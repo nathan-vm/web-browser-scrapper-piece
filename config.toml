@@ -1,9 +1,6 @@
 [repository]
-# The name of the github organization / person owner, e.g. tauffer-consulting.
-# Must be in lower-case letters
 REGISTRY_NAME = "nathan-vm"
 
-# The name of this Pieces repository
 REPOSITORY_NAME = "web-browser-scrapper-piece"
 REPOSITORY_LABEL = "web-browser-scrapper-piece"
 

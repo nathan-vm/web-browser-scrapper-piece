@@ -7,7 +7,7 @@ def test_selenium_web_browser():
         stop_on_error="test"
     )
     output_data = piece_dry_run(
-        "SeleniumWebBrowser",
+        "SeleniumWebBrowserPiece",
         input_data,
     )
 
