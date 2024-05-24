@@ -21,8 +21,11 @@ class SeleniumWebBrowserPiece(BasePiece):
             if cmd.name.value == "save_screenshot":
                 cmd.value = str(results_path/cmd.value)
                 self.display_result = dict(file_type="png",filepath=cmd.value)
-                
-            getattr(driver, cmd.name)(cmd.value)
+            
+            if cmd.name.value is None:
+                getattr(driver, cmd.name)()
+            else:
+                getattr(driver, cmd.name)(cmd.value)    
         
         driver.quit()
 

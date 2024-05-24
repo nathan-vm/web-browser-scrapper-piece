@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import List
+from typing import List, Optional
 from enum import Enum
 
 class Commands(str,Enum):
@@ -10,7 +10,8 @@ class CommandInput(BaseModel):
     name: Commands = Field(
         description='Name of the CommandInput.',
     )
-    value: str = Field(
+    value: Optional[str] = Field(
+        default=None,
         description='value of the CommandInput.',
     )
 
