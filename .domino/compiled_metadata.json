@@ -2,8 +2,8 @@
     "SeleniumWebBrowserPiece": {
         "name": "SeleniumWebBrowserPiece",
         "dependency": {
-            "dockerfile": null,
-            "requirements_file": "requirements_0.txt"
+            "dockerfile": "Dockerfile_1",
+            "requirements_file": null
         },
         "tags": [
             "browser",
@@ -30,8 +30,8 @@
                 "memory": 128
             },
             "limits": {
-                "cpu": 100,
-                "memory": 128
+                "cpu": 1000,
+                "memory": 1024
             }
         },
         "input_schema": {
@@ -39,25 +39,28 @@
                 "CommandInput": {
                     "properties": {
                         "name": {
-                            "title": "Name",
-                            "type": "string"
+                            "$ref": "#/$defs/Commands"
                         },
-                        "cmd": {
-                            "title": "Cmd",
+                        "value": {
+                            "title": "Value",
                             "type": "string"
-                        },
-                        "stop_on_error": {
-                            "title": "Stop On Error",
-                            "type": "boolean"
                         }
                     },
                     "required": [
                         "name",
-                        "cmd",
-                        "stop_on_error"
+                        "value"
                     ],
                     "title": "CommandInput",
                     "type": "object"
+                },
+                "Commands": {
+                    "enum": [
+                        "get",
+                        "maximize_window",
+                        "save_screenshot"
+                    ],
+                    "title": "Commands",
+                    "type": "string"
                 }
             },
             "description": "Selenium Web Browser Input Model",
