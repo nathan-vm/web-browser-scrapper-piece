@@ -47,14 +47,21 @@
                             "description": "Name of the CommandInput."
                         },
                         "value": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "default": null,
                             "description": "value of the CommandInput.",
-                            "title": "Value",
-                            "type": "string"
+                            "title": "Value"
                         }
                     },
                     "required": [
-                        "name",
-                        "value"
+                        "name"
                     ],
                     "title": "CommandInput",
                     "type": "object"
