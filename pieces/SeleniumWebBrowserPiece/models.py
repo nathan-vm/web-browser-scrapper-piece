@@ -17,7 +17,7 @@ class InputModel(BaseModel):
     """
 
     commands: List[CommandInput] = Field(
-        default=1,
+        default=[],
         description="Number of seconds to sleep",
     )
 

@@ -1,16 +1,36 @@
 FROM ghcr.io/tauffer-consulting/domino-base-piece:latest
-# Install specific requirements to run OpenCV
-RUN apt-get update; apt-get clean
-RUN apt-get install -y wget
 
 # Need to copy pieces source code
 COPY config.toml domino/pieces_repository/
 COPY pieces domino/pieces_repository/pieces
 COPY .domino domino/pieces_repository/.domino
 
-RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-RUN apt-get install ./google-chrome-stable_current_amd64.deb -y --fix-missing
-RUN rm -rf ./google-chrome-stable_current_amd64.deb
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    wget \
+    curl \
+    unzip \
+    gnupg \
+    libnss3 \
+    libgconf-2-4 \
+    libxi6 \
+    libxrender1 \
+    libxtst6 \
+    libxss1 \
+    libappindicator1 \
+    fonts-liberation \
+    libu2f-udev \
+    libvulkan1 \
+    xdg-utils \
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install specific dependencies in domino_env virtual environment
-RUN pip install --no-cache-dir selenium==4.19.0
+# Install Chrome
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list \
+    && apt-get update \
+    && apt-get install -y google-chrome-stable \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Selenium
+RUN pip install selenium
