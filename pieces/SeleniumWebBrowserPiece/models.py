@@ -7,8 +7,12 @@ class Commands(str,Enum):
     maximize_window="maximize_window"
     save_screenshot="save_screenshot"
 class CommandInput(BaseModel):
-    name: Commands
-    value: str
+    name: Commands = Field(
+        description='Name of the CommandInput.',
+    )
+    value: str = Field(
+        description='value of the CommandInput.',
+    )
 
 class CommandOutput(BaseModel):
     name: str
