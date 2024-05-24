@@ -63,7 +63,7 @@
             "description": "Selenium Web Browser Input Model",
             "properties": {
                 "commands": {
-                    "default": 1,
+                    "default": [],
                     "description": "Number of seconds to sleep",
                     "items": {
                         "$ref": "#/$defs/CommandInput"
