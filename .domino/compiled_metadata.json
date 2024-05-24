@@ -39,9 +39,15 @@
                 "CommandInput": {
                     "properties": {
                         "name": {
-                            "$ref": "#/$defs/Commands"
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/Commands"
+                                }
+                            ],
+                            "description": "Name of the CommandInput."
                         },
                         "value": {
+                            "description": "value of the CommandInput.",
                             "title": "Value",
                             "type": "string"
                         }
