@@ -1,110 +1,119 @@
 {
-    "ExampleSimplePiece": {
-        "name": "ExampleSimplePiece",
+    "SeleniumWebBrowserPiece": {
+        "name": "SeleniumWebBrowserPiece",
         "dependency": {
             "dockerfile": null,
             "requirements_file": "requirements_0.txt"
         },
         "tags": [
-            "Example"
+            "browser",
+            "chrome",
+            "web",
+            "selenium"
         ],
         "style": {
-            "node_label": "Simple Piece",
+            "node_label": "Selenium Browser",
             "node_type": "default",
             "node_style": {
                 "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
-            "icon_class_name": "fas fa-database",
+            "icon_class_name": "skill-icons:selenium",
             "iconStyle": {
                 "cursor": "pointer"
             }
         },
-        "description": "This is an example of a simple Domino Piece",
+        "description": "Selenium is an umbrella project for a range of tools and libraries that enable and support the automation of web browsers.It provides extensions to emulate user interaction with browsers, a distribution server for scaling browser allocation, and the infrastructure for implementations of the W3C WebDriver specification that lets you write interchangeable code for all major web browsers.",
         "container_resources": {
             "requests": {
-                "cpu": "100m",
-                "memory": "128Mi"
+                "cpu": 1000,
+                "memory": 1000
             },
             "limits": {
-                "cpu": "500m",
-                "memory": "512Mi"
+                "cpu": 10000,
+                "memory": 32000
             }
         },
         "input_schema": {
-            "title": "InputModel",
-            "type": "object",
-            "properties": {
-                "distribution_name": {
-                    "description": "Name of the distribution to sample from",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/DistributionType"
+            "$defs": {
+                "CommandInput": {
+                    "properties": {
+                        "name": {
+                            "title": "Name",
+                            "type": "string"
+                        },
+                        "cmd": {
+                            "title": "Cmd",
+                            "type": "string"
+                        },
+                        "stop_on_error": {
+                            "title": "Stop On Error",
+                            "type": "boolean"
                         }
-                    ]
-                },
-                "distribution_mean": {
-                    "title": "Distribution Mean",
-                    "description": "Distribution mean",
-                    "type": "number"
-                },
-                "distribution_sd": {
-                    "title": "Distribution Sd",
-                    "description": "Distribution standard deviation",
-                    "default": 1.0,
-                    "exclusiveMinimum": 0.0,
-                    "type": "number"
+                    },
+                    "required": [
+                        "name",
+                        "cmd",
+                        "stop_on_error"
+                    ],
+                    "title": "CommandInput",
+                    "type": "object"
                 }
             },
-            "required": [
-                "distribution_name",
-                "distribution_mean"
-            ],
-            "definitions": {
-                "DistributionType": {
-                    "title": "DistributionType",
-                    "description": "An enumeration.",
-                    "enum": [
-                        "gaussian",
-                        "poisson"
-                    ],
-                    "type": "string"
+            "description": "Selenium Web Browser Input Model",
+            "properties": {
+                "commands": {
+                    "default": 1,
+                    "description": "Number of seconds to sleep",
+                    "items": {
+                        "$ref": "#/$defs/CommandInput"
+                    },
+                    "title": "Commands",
+                    "type": "array"
                 }
-            }
+            },
+            "title": "InputModel",
+            "type": "object"
         },
         "output_schema": {
+            "$defs": {
+                "CommandOutput": {
+                    "properties": {
+                        "name": {
+                            "title": "Name",
+                            "type": "string"
+                        },
+                        "result": {
+                            "title": "Result",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "name",
+                        "result"
+                    ],
+                    "title": "CommandOutput",
+                    "type": "object"
+                }
+            },
+            "description": "Selenium Web Browser Output Model",
+            "properties": {
+                "outputs": {
+                    "description": "Outputs in order of each command input. Missing results are declared as 'None'.",
+                    "items": {
+                        "$ref": "#/$defs/CommandOutput"
+                    },
+                    "title": "Outputs",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "outputs"
+            ],
             "title": "OutputModel",
-            "type": "object",
-            "properties": {
-                "message": {
-                    "title": "Message",
-                    "description": "Output message to log",
-                    "type": "string"
-                },
-                "sample_result": {
-                    "title": "Sample Result",
-                    "description": "The result of this Piece's processing",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "message",
-                "sample_result"
-            ]
+            "type": "object"
         },
-        "secrets_schema": {
-            "title": "SecretsModel",
-            "type": "object",
-            "properties": {
-                "EXAMPLE_OPERATOR_SECRET_1": {
-                    "title": "Example Operator Secret 1",
-                    "description": "A secret necessary to run this Piece",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "EXAMPLE_OPERATOR_SECRET_1"
-            ]
-        }
+        "secrets_schema": null,
+        "source_url": "https://github.com/nathan-vm/web-browser-scrapper-piece/tree/main/pieces/SeleniumWebBrowserPiece"
     }
 }
