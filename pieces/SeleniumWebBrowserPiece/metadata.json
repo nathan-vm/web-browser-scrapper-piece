@@ -10,8 +10,8 @@
             "memory": 128
         },
         "limits": {
-            "cpu": 100,
-            "memory": 128
+            "cpu": 1000,
+            "memory": 1024
         }
     },
     "tags": [

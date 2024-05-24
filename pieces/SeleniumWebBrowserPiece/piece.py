@@ -1,8 +1,8 @@
 from domino.base_piece import BasePiece
-from .models import InputModel, OutputModel, CommandOutput
+from .models import InputModel, OutputModel,CommandInput, CommandOutput
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-
+from pathlib import Path
 class SeleniumWebBrowserPiece(BasePiece):
 
     def piece_function(self, input_data: InputModel):
@@ -15,18 +15,18 @@ class SeleniumWebBrowserPiece(BasePiece):
         self.logger.info("Start chrome web driver.")
         driver = webdriver.Chrome(options=options)
 
-        self.logger.info("Going to URL.")
-        driver.get("https://webscraper.io/test-sites/e-commerce/static")
+        results_path = Path(self.results_path)
 
-        self.logger.info("Maximize window.")
-        driver.maximize_window()
-
-        self.logger.info("Taking screenshot.")
-        driver.save_screenshot('ss.png')
-
-        self.logger.info("Quit chrome driver.")
+        for cmd in input_data.commands:
+            if cmd.name.value == "save_screenshot":
+                cmd.value = str(results_path/cmd.value)
+                self.display_result = dict(file_type="png",filepath=cmd.value)
+                
+            getattr(driver, cmd.name)(cmd.value)
+        
         driver.quit()
 
         return OutputModel(
             outputs=[dict(name="out1", result="res1")]
         )
+ 

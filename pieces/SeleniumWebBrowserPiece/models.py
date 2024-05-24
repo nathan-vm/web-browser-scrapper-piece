@@ -1,10 +1,14 @@
 from pydantic import BaseModel, Field
 from typing import List
+from enum import Enum
 
+class Commands(str,Enum):
+    get="get"
+    maximize_window="maximize_window"
+    save_screenshot="save_screenshot"
 class CommandInput(BaseModel):
-    name: str
-    cmd: str
-    stop_on_error: bool
+    name: Commands
+    value: str
 
 class CommandOutput(BaseModel):
     name: str
