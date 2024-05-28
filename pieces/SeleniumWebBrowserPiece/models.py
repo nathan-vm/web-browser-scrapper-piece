@@ -4,7 +4,9 @@ from enum import Enum
 
 class Commands(str,Enum):
     get="get"
+    current_url = "current_url"
     maximize_window="maximize_window"
+    find_element_css="find_element_css"
     save_screenshot="save_screenshot"
 class CommandInput(BaseModel):
     name: Commands = Field(
