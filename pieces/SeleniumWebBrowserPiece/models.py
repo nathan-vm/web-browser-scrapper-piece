@@ -7,6 +7,7 @@ class Commands(str,Enum):
     current_url = "current_url"
     maximize_window="maximize_window"
     find_element_css="find_element_css"
+    find_elements_css="find_elements_css"
     save_screenshot="save_screenshot"
 class CommandInput(BaseModel):
     name: Commands = Field(
@@ -37,6 +38,6 @@ class OutputModel(BaseModel):
     """
     Selenium Web Browser Output Model
     """
-    outputs: List[CommandOutput] = Field(
+    outputs: List[str] = Field(
         description="Outputs in order of each command input. Missing results are declared as 'None'."
     )
