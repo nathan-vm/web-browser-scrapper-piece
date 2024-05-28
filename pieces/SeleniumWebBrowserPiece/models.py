@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import List, Optional
+from typing import List, Optional, Union
 from enum import Enum
 
 class Commands(str,Enum):
@@ -19,7 +19,7 @@ class CommandInput(BaseModel):
 
 class CommandOutput(BaseModel):
     name: str
-    result: str
+    result: Union[str, None]
 
 
 class InputModel(BaseModel):
