@@ -69,7 +69,9 @@
                 "Commands": {
                     "enum": [
                         "get",
+                        "current_url",
                         "maximize_window",
+                        "find_element_css",
                         "save_screenshot"
                     ],
                     "title": "Commands",
@@ -100,8 +102,15 @@
                             "type": "string"
                         },
                         "result": {
-                            "title": "Result",
-                            "type": "string"
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Result"
                         }
                     },
                     "required": [
