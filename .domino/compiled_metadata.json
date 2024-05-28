@@ -72,6 +72,7 @@
                         "current_url",
                         "maximize_window",
                         "find_element_css",
+                        "find_elements_css",
                         "save_screenshot"
                     ],
                     "title": "Commands",
@@ -94,39 +95,12 @@
             "type": "object"
         },
         "output_schema": {
-            "$defs": {
-                "CommandOutput": {
-                    "properties": {
-                        "name": {
-                            "title": "Name",
-                            "type": "string"
-                        },
-                        "result": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Result"
-                        }
-                    },
-                    "required": [
-                        "name",
-                        "result"
-                    ],
-                    "title": "CommandOutput",
-                    "type": "object"
-                }
-            },
             "description": "Selenium Web Browser Output Model",
             "properties": {
                 "outputs": {
                     "description": "Outputs in order of each command input. Missing results are declared as 'None'.",
                     "items": {
-                        "$ref": "#/$defs/CommandOutput"
+                        "type": "string"
                     },
                     "title": "Outputs",
                     "type": "array"
