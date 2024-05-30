@@ -8,6 +8,6 @@
             "SeleniumWebBrowserPiece"
         ],
         "secrets": [],
-        "source_image": "ghcr.io/nathan-vm/web-browser-scrapper-piece:development-group0"
+        "source_image": "ghcr.io/nathan-vm/web-browser-scrapper-piece:1.0.0-group0"
     }
 }
