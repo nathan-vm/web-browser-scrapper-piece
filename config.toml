@@ -6,4 +6,4 @@ REPOSITORY_LABEL = "web-browser-scrapper-piece"
 
 # The version of this Pieces release
 # Attention: changing this will create a new release
-VERSION = "0.1.0"
+VERSION = "1.0.0"
