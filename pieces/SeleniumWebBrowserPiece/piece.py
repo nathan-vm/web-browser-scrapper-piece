@@ -5,7 +5,9 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from pathlib import Path
 from typing import List
-import json
+import uuid
+import pickle
+
 class SeleniumWebBrowserPiece(BasePiece):
 
     def piece_function(self, input_data: InputModel):
@@ -21,6 +23,8 @@ class SeleniumWebBrowserPiece(BasePiece):
         outputs = self.run_commands(commands=input_data.commands)
 
         self.driver.quit()
+
+        self.logger.info(f"Outputs: {outputs}")
 
         return OutputModel(
             outputs=outputs
@@ -52,9 +56,18 @@ class SeleniumWebBrowserPiece(BasePiece):
 
             if cmd.name.value == "find_elements_css":
                 elements = self.driver.find_elements(By.CSS_SELECTOR, cmd.value)
-                result = []
+                self.logger.info(f"elements: {len(elements)}")
+                file_name = f"{results_path}/{uuid.uuid4()}.pkl"
+
+                content = list()
+
                 for e in elements:
-                    result.append(e.get_attribute('innerHTML'))
+                    content.append(e.get_attribute("innerHTML"))
+
+                with open(file_name,"wb") as file:
+                    pickle.dump(content, file)
+
+                result = file_name
 
             if not isinstance(result,str):
                 result = str(result)
