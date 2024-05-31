@@ -1,4 +1,75 @@
 {
+    "GetHTMLPiece": {
+        "name": "GetHTMLPiece",
+        "dependency": {
+            "dockerfile": "Dockerfile_1",
+            "requirements_file": null
+        },
+        "tags": [
+            "browser",
+            "chrome",
+            "web",
+            "selenium"
+        ],
+        "style": {
+            "node_label": "Get HTML Piece",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#ebebeb"
+            },
+            "useIcon": true,
+            "icon_class_name": "skill-icons:selenium",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "GetHTMLPiece",
+        "container_resources": {
+            "requests": {
+                "cpu": 100,
+                "memory": 128
+            },
+            "limits": {
+                "cpu": 1000,
+                "memory": 1024
+            }
+        },
+        "input_schema": {
+            "description": "Selenium Web Browser Input Model",
+            "properties": {
+                "get_page_html": {
+                    "default": [
+                        "http://www.google.com.br"
+                    ],
+                    "description": "URL you want to extract HTML",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Get Page Html",
+                    "type": "array"
+                }
+            },
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "description": "Selenium Web Browser Output Model",
+            "properties": {
+                "output_file_path": {
+                    "description": "Path for pickle file with a list of all HTML files combined.",
+                    "title": "Output File Path",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "output_file_path"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/nathan-vm/web-browser-scrapper-piece/tree/main/pieces/GetHTMLPiece"
+    },
     "SeleniumWebBrowserPiece": {
         "name": "SeleniumWebBrowserPiece",
         "dependency": {

@@ -5,6 +5,7 @@
             "requirements_file": null
         },
         "pieces": [
+            "GetHTMLPiece",
             "SeleniumWebBrowserPiece"
         ],
         "secrets": [],
