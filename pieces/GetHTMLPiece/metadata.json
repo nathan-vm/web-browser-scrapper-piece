@@ -1,0 +1,27 @@
+{
+    "name": "GetHTMLPiece",
+    "description": "GetHTMLPiece",
+    "dependency": {
+        "dockerfile": "Dockerfile_1"
+    },
+    "container_resources": {
+        "requests": {
+            "cpu": 100,
+            "memory": 128
+        },
+        "limits": {
+            "cpu": 1000,
+            "memory": 1024
+        }
+    },
+    "tags": [
+        "browser",
+        "chrome",
+        "web",
+        "selenium"
+    ],
+    "style": {
+        "node_label": "Get HTML Piece",
+        "icon_class_name": "skill-icons:selenium"
+    }
+}
